@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CapsuleController : MonoBehaviour
+[NetworkSettings(sendInterval = 0.033f)]
+public class CapsuleController : NetworkBehaviour
 {
 
     public float speed;
@@ -18,14 +20,9 @@ public class CapsuleController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
         {
-            Vector3 bubbleDirection = Camera.main.transform.forward;
-            Vector3 bubblePosition = Camera.main.transform.position + bubbleDirection * 1.5f;
-            GameObject nextBubble = (GameObject)Instantiate(bubble, bubblePosition, Quaternion.Euler(bubbleDirection));
-            nextBubble.GetComponentInChildren<Rigidbody>().velocity = bubbleDirection*1.0f;
-
-            Destroy(nextBubble, 8.0f);
+            ShootBubble();
         }
     }
 
@@ -42,10 +39,21 @@ public class CapsuleController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name=="Bubble(Clone)") {
+        if (collision.collider.name == "Bubble(Clone)")
+        {
             Destroy(this.gameObject);
         }
-            
-            
+    }
+	
+	[Command]  
+    void ShootBubble()
+    {
+		Vector3 bubbleDirection = Camera.main.transform.forward;
+		Vector3 bubblePosition = Camera.main.transform.position + bubbleDirection * 1.5f;
+		GameObject nextBubble = (GameObject)Instantiate(bubble, bubblePosition, Quaternion.Euler(bubbleDirection));
+		nextBubble.GetComponentInChildren<Rigidbody>().velocity = bubbleDirection * 1.0f;
+		NetworkServer.Spawn(nextBubble);
+		Destroy(nextBubble, 8.0f);
+
     }
 }
