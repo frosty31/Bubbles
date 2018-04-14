@@ -22,7 +22,7 @@ public class CapsuleController : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
         {
-            ShootBubble();
+            CmdShootBubble();
         }
     }
 
@@ -46,7 +46,7 @@ public class CapsuleController : NetworkBehaviour
     }
 	
 	[Command]  
-    void ShootBubble()
+    void CmdShootBubble()
     {
 		Vector3 bubbleDirection = Camera.main.transform.forward;
 		Vector3 bubblePosition = Camera.main.transform.position + bubbleDirection * 1.5f;
