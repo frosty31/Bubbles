@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1779395805652930, guid: 313c1d8ccb88541c6b76f3c16ea53e94, type: 2}
+  sprite: {fileID: 1051833796257928, guid: d9f335e481ca44580a71140cf0cb7ad0, type: 2}
 --- !u!114 &114656218426932752
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,8 +8,13 @@ using UnityEngine.Networking;
 [NetworkSettings(sendInterval = 0.033f)]
 public class PlayerController : NetworkBehaviour {
 
+
+
     public GameObject bubble;
 
+    public GameObject sprite;
+
+	
 
 	/// <summary>
 	/// Our position.
@@ -36,6 +41,12 @@ public class PlayerController : NetworkBehaviour {
 			localPosition = postion;
 			localRotation = rotation;
 		}
+	}
+
+	public override void OnStartLocalPlayer()
+	{
+       
+        CmdSpawnSprite();
 	}
 
 	// Use this for initialization
@@ -78,12 +89,19 @@ public class PlayerController : NetworkBehaviour {
 	[Command]
 	void CmdShootBubble()
 	{
-		Vector3 bubbleDirection = Camera.main.transform.forward;
-		Vector3 bubblePosition = Camera.main.transform.position + bubbleDirection * 1.5f;
+		Vector3 bubbleDirection = this.transform.forward;
+		Vector3 bubblePosition = this.transform.position + bubbleDirection * 1.5f;
 		GameObject nextBubble = (GameObject)Instantiate(bubble, bubblePosition, Quaternion.Euler(bubbleDirection));
 		nextBubble.GetComponentInChildren<Rigidbody>().velocity = bubbleDirection * 1.0f;
 		NetworkServer.Spawn(nextBubble);
 		Destroy(nextBubble, 8.0f);
 
 	}
+
+    [Command]
+    void CmdSpawnSprite() {
+        
+		GameObject playerSprite = (GameObject)Instantiate(sprite);
+        NetworkServer.Spawn(playerSprite);
+    }
 }

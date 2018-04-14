@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114117786722668360}
   - component: {fileID: 114064720665341660}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  bubble: {fileID: 1779395805652930, guid: 313c1d8ccb88541c6b76f3c16ea53e94, type: 2}
 --- !u!135 &135737250921849098
 SphereCollider:
   m_ObjectHideFlags: 1
