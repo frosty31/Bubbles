@@ -92,7 +92,7 @@ public class PlayerController : NetworkBehaviour {
 		Vector3 bubbleDirection = this.transform.forward;
 		Vector3 bubblePosition = this.transform.position + bubbleDirection * 1.5f;
 		GameObject nextBubble = (GameObject)Instantiate(bubble, bubblePosition, Quaternion.Euler(bubbleDirection));
-		nextBubble.GetComponentInChildren<Rigidbody>().velocity = bubbleDirection * 1.0f;
+		nextBubble.GetComponentInChildren<Rigidbody>().velocity = bubbleDirection * 3.0f;
 		NetworkServer.Spawn(nextBubble);
 		Destroy(nextBubble, 8.0f);
 

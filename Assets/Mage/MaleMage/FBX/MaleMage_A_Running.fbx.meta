@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: b38d798907a1f1143896e6e1a6fd927a
+timeCreated: 1523763189
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Euclid
+    100002: //RootNode
+    100004: rig:GlobalSRT
+    100006: rig:Head
+    100008: rig:LBicep
+    100010: rig:left_weapon
+    100012: rig:LFootBone1
+    100014: rig:LFootBone2
+    100016: rig:LForearm
+    100018: rig:LHand
+    100020: rig:LShin
+    100022: rig:LShoulder
+    100024: rig:LThigh
+    100026: rig:Lumbar1
+    100028: rig:Lumbar2
+    100030: rig:Neck
+    100032: rig:RBicep
+    100034: rig:RFootBone1
+    100036: rig:RFootBone2
+    100038: rig:RForearm
+    100040: rig:RHand
+    100042: rig:rig
+    100044: rig:right_weapon
+    100046: rig:RShin
+    100048: rig:RShoulder
+    100050: rig:RThigh
+    100052: rig:UpperBody
+    100054: shadow
+    100056: weapon:left_weapon
+    100058: weapon:right_weapon
+    100060: weapon:weapon
+    400000: Euclid
+    400002: //RootNode
+    400004: rig:GlobalSRT
+    400006: rig:Head
+    400008: rig:LBicep
+    400010: rig:left_weapon
+    400012: rig:LFootBone1
+    400014: rig:LFootBone2
+    400016: rig:LForearm
+    400018: rig:LHand
+    400020: rig:LShin
+    400022: rig:LShoulder
+    400024: rig:LThigh
+    400026: rig:Lumbar1
+    400028: rig:Lumbar2
+    400030: rig:Neck
+    400032: rig:RBicep
+    400034: rig:RFootBone1
+    400036: rig:RFootBone2
+    400038: rig:RForearm
+    400040: rig:RHand
+    400042: rig:rig
+    400044: rig:right_weapon
+    400046: rig:RShin
+    400048: rig:RShoulder
+    400050: rig:RThigh
+    400052: rig:UpperBody
+    400054: shadow
+    400056: weapon:left_weapon
+    400058: weapon:right_weapon
+    400060: weapon:weapon
+    2100000: Euclid
+    2300000: shadow
+    3300000: shadow
+    4300000: shadow
+    4300002: Euclid
+    4300004: weapon:left_weapon
+    4300006: weapon:right_weapon
+    7400000: mixamo.com
+    9500000: //RootNode
+    13700000: Euclid
+    13700002: weapon:left_weapon
+    13700004: weapon:right_weapon
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
