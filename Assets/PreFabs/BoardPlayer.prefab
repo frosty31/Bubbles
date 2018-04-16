@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 54596434542105590}
   - component: {fileID: 114727146796961284}
   - component: {fileID: 114550036877192730}
+  - component: {fileID: 114966536467886130}
   m_Layer: 0
   m_Name: BoardPlayer
   m_TagString: Untagged
@@ -845,6 +846,8 @@ MonoBehaviour:
   bubbled: {fileID: 1325047008026438, guid: f82bed24109be684482a6545da23e4a8, type: 2}
   movementSpeed: 7
   rotationSpeed: 7
+  gotBubbledEffect: {fileID: 100000, guid: 23ce8f2e46d062b4988a8fc002d84796, type: 2}
+  destroyedEffect: {fileID: 100004, guid: 7832a8d1c574ef44687c43e6368c6438, type: 2}
 --- !u!114 &114727146796961284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -876,7 +879,28 @@ MonoBehaviour:
     i14: 42
     i15: 166
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114966536467886130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966614106038258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!136 &136724160072421280
 CapsuleCollider:
   m_ObjectHideFlags: 1

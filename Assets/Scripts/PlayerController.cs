@@ -14,7 +14,7 @@ public class PlayerController : NetworkBehaviour {
 
     public GameObject sprite;
 
-	
+    public int maxNumberOfBubbles { set; get; }
 
 	/// <summary>
 	/// Our position.
@@ -45,13 +45,13 @@ public class PlayerController : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer()
 	{
-       
+        LogicManager.instance.localPlayerController = this;
         CmdSpawnSprite();
 	}
 
 	// Use this for initialization
 	void Start () {
-		
+        maxNumberOfBubbles = 20;
 	}
 	
 	// Update is called once per frame
@@ -59,8 +59,11 @@ public class PlayerController : NetworkBehaviour {
 		// If we aren't the local player, we just need to make sure that the position of this object is set properly
 		// so that we properly render their avatar in our world.
 
-		if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
+		if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer && maxNumberOfBubbles >= 0)
 		{
+            maxNumberOfBubbles -= 1;
+            Debug.Log(maxNumberOfBubbles);
+
 			CmdShootBubble();
 		}
 
@@ -100,8 +103,21 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     void CmdSpawnSprite() {
-        
-		GameObject playerSprite = (GameObject)Instantiate(sprite);
-        NetworkServer.Spawn(playerSprite);
+        GameObject playerSprite = (GameObject)Instantiate(sprite, this.transform);
+        // NetworkServer.Spawn(playerSprite);
+        // BUG
+        if (isServer)
+        {
+            RpcSpawnSprite();
+        }
+    }
+
+    /// <summary>
+    /// BUG
+    /// </summary>
+    [ClientRpc]
+    void RpcSpawnSprite()
+    {
+        GameObject playerSprite = (GameObject)Instantiate(sprite, this.transform);
     }
 }

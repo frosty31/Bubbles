@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 54962260429946332}
   - component: {fileID: 114684407446735668}
   - component: {fileID: 114361755888584676}
+  - component: {fileID: 114393846382245790}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -153,6 +154,17 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114393846382245790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779395805652930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641ae7e2f49be4c9588d8cf945cb3c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114684407446735668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,7 +269,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1438068341
+  randomSeed: 1357632911
   InitialModule:
     serializedVersion: 3
     enabled: 1

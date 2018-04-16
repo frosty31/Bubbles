@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187aa6f51e61a3c45badb2915cfa1a85, type: 3}
   m_Name: Menu Settings
   m_EditorClassIdentifier: 
-  menuFadeTime: 1
+  menuFadeTime: 0
   sceneChangeFadeColor: {r: 0, g: 0, b: 0, a: 1}
   nextSceneIndex: 1
-  mainMenuMusicLoop: {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
-  musicLoopToChangeTo: {fileID: 0}
+  mainMenuMusicLoop: {fileID: 8300000, guid: 9cfb165ca981f104595fc6ecf3bfcbb5, type: 3}
+  musicLoopToChangeTo: {fileID: 8300000, guid: 4784f321a06454b428adc1ea14bcae08, type: 3}
