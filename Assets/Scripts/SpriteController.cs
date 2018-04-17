@@ -25,7 +25,7 @@ public class SpriteController : NetworkBehaviour
 
     int breakFree = 100;
 
-    bool iAmLocalPlayer;
+    public bool iAmLocalPlayer { get; set; }
 
     private void Start()
     {
@@ -35,20 +35,17 @@ public class SpriteController : NetworkBehaviour
 
         vectorAtOrigin = new Vector3(0, 0, 0);
 
-        PlayerController myPlayerController = transform.parent.GetComponent<PlayerController>();
-        iAmLocalPlayer = myPlayerController.isLocalPlayer;
-        transform.parent = null;
-        transform.position = new Vector3(0, 0.13f, 0);
+        if (transform.parent)
+        {
+            PlayerController myPlayerController = transform.parent.GetComponent<PlayerController>();
+            iAmLocalPlayer = myPlayerController.isLocalPlayer;
+        }
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        if (isBubbled)
+        if (iAmLocalPlayer)
         {
-            this.transform.localPosition = new Vector3(0, 0, 0);
-        }
-
-        if (iAmLocalPlayer) {
             var x = Input.GetAxisRaw("Horizontal");
             var z = Input.GetAxisRaw("Vertical");
 
@@ -110,6 +107,18 @@ public class SpriteController : NetworkBehaviour
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isIdle", true);
             }
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isBubbled)
+        {
+            this.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         if (breakFree <= 0)

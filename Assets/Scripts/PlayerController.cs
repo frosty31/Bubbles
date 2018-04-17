@@ -104,20 +104,18 @@ public class PlayerController : NetworkBehaviour {
     [Command]
     void CmdSpawnSprite() {
         GameObject playerSprite = (GameObject)Instantiate(sprite, this.transform);
-        // NetworkServer.Spawn(playerSprite);
-        // BUG
-        if (isServer)
-        {
-            RpcSpawnSprite();
-        }
+        NetworkServer.Spawn(playerSprite);
+        RpcSpawnSprite(playerSprite);
     }
 
     /// <summary>
     /// BUG
     /// </summary>
     [ClientRpc]
-    void RpcSpawnSprite()
+    void RpcSpawnSprite(GameObject playerSprite)
     {
-        GameObject playerSprite = (GameObject)Instantiate(sprite, this.transform);
+        playerSprite.GetComponent<SpriteController>().iAmLocalPlayer = isLocalPlayer;
+        playerSprite.transform.parent = null;
+        playerSprite.transform.position = new Vector3(0, 0.13f, 0);
     }
 }
