@@ -27,11 +27,27 @@ public class SpriteController : NetworkBehaviour
 
     public bool iAmLocalPlayer { get; set; }
 
+    public NetworkedPlayerState myNetworkedPlayerState;
+
+    /// <summary>
+    /// Our position.
+    /// </summary>
+    [SyncVar]
+    public Vector3 localPosition;
+
+    /// <summary>
+    /// Our rotation.
+    /// </summary>
+    [SyncVar]
+    public Quaternion localRotation;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider>();
+
+        myNetworkedPlayerState = LogicManager.instance.localPlayerObject.GetComponent<NetworkedPlayerState>();
 
         vectorAtOrigin = new Vector3(0, 0, 0);
 
@@ -44,6 +60,31 @@ public class SpriteController : NetworkBehaviour
 
     private void Update()
     {
+        if (!iAmLocalPlayer)
+        {
+            transform.position = Vector3.Lerp(transform.position, localPosition, 0.3f);
+            transform.rotation = localRotation;
+            return;
+        }
+
+        // Depending on if you are host or client, either setting the SyncVar (client) 
+        // or calling the Cmd (host) will update the other users in the session.
+        // So we have to do both.
+        localPosition = transform.position;
+        localRotation = transform.rotation;
+
+        // CmdTransform(localPosition, localRotation);
+        // This conditional is the equivalent.
+        myNetworkedPlayerState.UpdateBoardPlayerTransform(this.gameObject, localPosition, localRotation);
+    }
+
+    void FixedUpdate()
+    {
+        if (isBubbled)
+        {
+            this.transform.localPosition = new Vector3(0, 0, 0);
+        }
+
         if (iAmLocalPlayer)
         {
             var x = Input.GetAxisRaw("Horizontal");
@@ -111,14 +152,6 @@ public class SpriteController : NetworkBehaviour
         else
         {
             return;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (isBubbled)
-        {
-            this.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         if (breakFree <= 0)

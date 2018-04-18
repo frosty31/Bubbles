@@ -15,5 +15,6 @@ public class LogicManager : MonoBehaviour {
 
     #endregion
 
+    public GameObject localPlayerObject { set; get; }
     public PlayerController localPlayerController { set; get; }
 }

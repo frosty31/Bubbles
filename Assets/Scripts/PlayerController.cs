@@ -45,7 +45,8 @@ public class PlayerController : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer()
 	{
-        LogicManager.instance.localPlayerController = this;
+        LogicManager.instance.localPlayerObject = this.gameObject;
+        LogicManager.instance.localPlayerController = this.GetComponent<PlayerController>();
         CmdSpawnSprite();
 	}
 

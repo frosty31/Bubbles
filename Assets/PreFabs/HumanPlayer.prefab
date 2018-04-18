@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4218726215562976}
   - component: {fileID: 114656218426932752}
   - component: {fileID: 114023655685939820}
+  - component: {fileID: 114196834088871678}
   m_Layer: 0
   m_Name: HumanPlayer
   m_TagString: Untagged
@@ -54,6 +55,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubble: {fileID: 1779395805652930, guid: 313c1d8ccb88541c6b76f3c16ea53e94, type: 2}
   sprite: {fileID: 1966614106038258, guid: cbf54b8d36949724fa555e771bec2aa6, type: 2}
+--- !u!114 &114196834088871678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1501433367770868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435d9dd9626b45c459cc6b8e78dc4325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114656218426932752
 MonoBehaviour:
   m_ObjectHideFlags: 1
