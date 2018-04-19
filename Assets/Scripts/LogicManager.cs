@@ -17,4 +17,6 @@ public class LogicManager : MonoBehaviour {
 
     public GameObject localPlayerObject { set; get; }
     public PlayerController localPlayerController { set; get; }
+
+    public GameObject joyStick;
 }
