@@ -13,7 +13,7 @@ public class SpriteController : NetworkBehaviour
 
     GameObject createdBubbled;
 
-    bool isBubbled;
+    public bool isBubbled;
 
     Rigidbody rb;
     Animator animator;
@@ -23,7 +23,7 @@ public class SpriteController : NetworkBehaviour
     public GameObject gotBubbledEffect;
     public GameObject destroyedEffect;
 
-    int breakFree = 100;
+    public int breakFree = 100;
 
     public bool iAmLocalPlayer { get; set; }
 
@@ -85,6 +85,34 @@ public class SpriteController : NetworkBehaviour
             this.transform.localPosition = new Vector3(0, 0, 0);
         }
 
+        if (breakFree <= 0)
+        {
+            Debug.Log("BROKE FREE");
+
+            transform.parent = null;
+
+            // isBubbled = false;
+            myNetworkedPlayerState.UpdateIsBubbledBool(this.gameObject, false);
+
+            rb.useGravity = true;
+
+            Destroy(createdBubbled);
+
+            Physics.gravity = new Vector3(0, -400.0f, 0);
+
+            /*
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isIdle", true);
+            */
+            myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                false, true, false);
+
+            StartCoroutine(ResetGravity(1));
+
+            myNetworkedPlayerState.ChangeBreakFreeNumber(this.gameObject, 100);
+        }
+
         if (iAmLocalPlayer)
         {
             var x = Input.GetAxisRaw("Horizontal");
@@ -105,75 +133,60 @@ public class SpriteController : NetworkBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                animator.SetBool("isRunning", true);
-                animator.SetBool("isIdle", false);
-
                 if (isBubbled)
                 {
-                    breakFree -= 1;
+                    myNetworkedPlayerState.ChangeBreakFreeNumber(this.gameObject, breakFree - 1);
+                } else
+                {
+                    myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                        true, false, false);
                 }
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
-                animator.SetBool("isRunning", true);
-                animator.SetBool("isIdle", false);
-
                 if (isBubbled)
                 {
-                    breakFree -= 1;
+                    myNetworkedPlayerState.ChangeBreakFreeNumber(this.gameObject, breakFree - 1);
+                }
+                else
+                {
+                    myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                        true, false, false);
                 }
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                animator.SetBool("isRunning", true);
-                animator.SetBool("isIdle", false);
-
                 if (isBubbled)
                 {
-                    breakFree -= 1;
+                    myNetworkedPlayerState.ChangeBreakFreeNumber(this.gameObject, breakFree - 1);
+                }
+                else
+                {
+                    myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                        true, false, false);
                 }
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                animator.SetBool("isRunning", true);
-                animator.SetBool("isIdle", false);
-
                 if (isBubbled)
                 {
-                    breakFree -= 1;
+                    myNetworkedPlayerState.ChangeBreakFreeNumber(this.gameObject, breakFree - 1);
+                }
+                else
+                {
+                    myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                        true, false, false);
                 }
             }
             else
             {
-                animator.SetBool("isRunning", false);
-                animator.SetBool("isIdle", true);
+                myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                    true, true, true);
             }
         }
         else
         {
             return;
-        }
-
-        if (breakFree <= 0)
-        {
-            Debug.Log("BROKE FREE");
-
-            transform.parent = null;
-            isBubbled = false;
-
-            rb.useGravity = true;
-
-            Destroy(createdBubbled);
-
-            Physics.gravity = new Vector3(0, -400.0f, 0);
-
-            animator.SetBool("isFalling", false);
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isIdle", false);
-
-            StartCoroutine(ResetGravity(1));
-
-            breakFree = 100;
         }
     }
 
@@ -211,7 +224,13 @@ public class SpriteController : NetworkBehaviour
             animator.SetBool("isRunning", false);
             animator.SetBool("isIdle", false);
 
-            isBubbled = true;
+            /*
+            myNetworkedPlayerState.UpdateBoardPlayerAnimator(this.gameObject,
+                false, false, true);
+            */
+
+            // isBubbled = true;
+            myNetworkedPlayerState.UpdateIsBubbledBool(this.gameObject, true);
         }
 
         if (other.tag == "DeathZone")
