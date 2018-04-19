@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityStandardAssets.CrossPlatformInput;
 
 [NetworkSettings(sendInterval = 0.033f)]
 public class SpriteController : NetworkBehaviour
 {
+    public GameObject MainCamera;
+
     public GameObject bubbled;
 
     public float movementSpeed;
@@ -56,6 +59,12 @@ public class SpriteController : NetworkBehaviour
             PlayerController myPlayerController = transform.parent.GetComponent<PlayerController>();
             iAmLocalPlayer = myPlayerController.isLocalPlayer;
         }
+
+#if UNITY_STANDALONE
+        MainCamera = Camera.main.gameObject;
+#else
+        MainCamera = GameObject.Find("ARCore Device").transform.Find("Main Camera").gameObject;
+#endif
     }
 
     private void Update()
@@ -115,11 +124,16 @@ public class SpriteController : NetworkBehaviour
 
         if (iAmLocalPlayer)
         {
+#if UNITY_STANDALONE
             var x = Input.GetAxisRaw("Horizontal");
             var z = Input.GetAxisRaw("Vertical");
+#else
+            var x = CrossPlatformInputManager.GetAxis("Horizontal");
+            var z = CrossPlatformInputManager.GetAxis("Vertical");
+#endif
 
             // Vector3 vectorMovement = new Vector3(x, 0.0f, z);
-            Vector3 vectorMovement = Camera.main.transform.forward * z + Camera.main.transform.right * x;
+            Vector3 vectorMovement = MainCamera.transform.forward * z + MainCamera.transform.right * x;
             if (vectorMovement != vectorAtOrigin)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vectorMovement), rotationSpeed);
@@ -131,7 +145,11 @@ public class SpriteController : NetworkBehaviour
 
             transform.Translate(vectorMovement * movementSpeed * Time.deltaTime, Space.World);
 
+#if UNITY_STANDALONE
             if (Input.GetKey(KeyCode.UpArrow))
+#else
+            if (z > 0)
+#endif
             {
                 if (isBubbled)
                 {
@@ -142,7 +160,11 @@ public class SpriteController : NetworkBehaviour
                         true, false, false);
                 }
             }
+#if UNITY_STANDALONE
             else if (Input.GetKey(KeyCode.DownArrow))
+#else
+            else if (z < 0)
+#endif
             {
                 if (isBubbled)
                 {
@@ -154,7 +176,11 @@ public class SpriteController : NetworkBehaviour
                         true, false, false);
                 }
             }
+#if UNITY_STANDALONE
             else if (Input.GetKey(KeyCode.LeftArrow))
+#else
+            else if (x < 0)
+#endif
             {
                 if (isBubbled)
                 {
@@ -166,7 +192,11 @@ public class SpriteController : NetworkBehaviour
                         true, false, false);
                 }
             }
+#if UNITY_STANDALONE
             else if (Input.GetKey(KeyCode.RightArrow))
+#else
+            else if (x > 0)
+#endif
             {
                 if (isBubbled)
                 {

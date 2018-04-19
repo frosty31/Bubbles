@@ -18,5 +18,15 @@ public class LogicManager : MonoBehaviour {
     public GameObject localPlayerObject { set; get; }
     public PlayerController localPlayerController { set; get; }
 
-    public GameObject joyStick;
+    // public GameObject AndroidARCoreCamera;
+    // public GameObject StandaloneCamera;
+
+    private void Start()
+    {
+#if UNITY_STANDALONE
+        // Instantiate(StandaloneCamera);
+#else
+        // Instantiate(AndroidARCoreCamera);
+#endif
+    }
 }

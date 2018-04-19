@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityStandardAssets.CrossPlatformInput;
 
 
 [NetworkSettings(sendInterval = 0.033f)]
 public class PlayerController : NetworkBehaviour {
 
-
+    public GameObject MainCamera;
 
     public GameObject bubble;
 
@@ -53,15 +53,25 @@ public class PlayerController : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         maxNumberOfBubbles = 20;
-	}
+
+#if UNITY_STANDALONE
+        MainCamera = Camera.main.gameObject;
+#else
+        MainCamera = GameObject.Find("ARCore Device").transform.Find("Main Camera").gameObject;
+#endif
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		// If we aren't the local player, we just need to make sure that the position of this object is set properly
-		// so that we properly render their avatar in our world.
+        // If we aren't the local player, we just need to make sure that the position of this object is set properly
+        // so that we properly render their avatar in our world.
 
-		if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer && maxNumberOfBubbles >= 0)
-		{
+#if UNITY_STANDALONE
+        if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer && maxNumberOfBubbles >= 0)
+#else
+        if (CrossPlatformInputManager.GetButton("Bubble") && isLocalPlayer && maxNumberOfBubbles >= 0 )
+#endif
+        {
             maxNumberOfBubbles -= 1;
             Debug.Log(maxNumberOfBubbles);
 
@@ -78,8 +88,8 @@ public class PlayerController : NetworkBehaviour {
 		
 		// if we are the remote player then we need to update our worldPosition and then set our 
 		// local position for other clients to update our position in their world.
-		transform.position = Camera.main.transform.position;
-		transform.rotation = Camera.main.transform.rotation;
+		transform.position = MainCamera.transform.position;
+		transform.rotation = MainCamera.transform.rotation;
 
 		// Depending on if you are host or client, either setting the SyncVar (client) 
 		// or calling the Cmd (host) will update the other users in the session.
