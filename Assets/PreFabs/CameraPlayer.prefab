@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114023655685939820}
   - component: {fileID: 114196834088871678}
   m_Layer: 0
-  m_Name: HumanPlayer
+  m_Name: CameraPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d01d011201949d1bafee0feb8da42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   bubble: {fileID: 1779395805652930, guid: 313c1d8ccb88541c6b76f3c16ea53e94, type: 2}
   sprite: {fileID: 1966614106038258, guid: cbf54b8d36949724fa555e771bec2aa6, type: 2}
 --- !u!114 &114196834088871678

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 199979942712784884}
   - component: {fileID: 114234204322824964}
   m_Layer: 0
-  m_Name: BubbleShot
+  m_Name: VisualBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 436244450
+  randomSeed: -1739118677
   InitialModule:
     serializedVersion: 3
     enabled: 1

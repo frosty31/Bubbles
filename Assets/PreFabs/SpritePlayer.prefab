@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 114550036877192730}
   - component: {fileID: 114064341707169572}
   m_Layer: 0
-  m_Name: BoardPlayer
+  m_Name: SpritePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,6 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885d25b1a649c4c6197bb9db46b887b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   bubbled: {fileID: 1325047008026438, guid: f82bed24109be684482a6545da23e4a8, type: 2}
   movementSpeed: 7
   rotationSpeed: 7

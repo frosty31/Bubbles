@@ -244,7 +244,7 @@ public class SpriteController : NetworkBehaviour
             rb.useGravity = false;
             createdBubbled = (GameObject)Instantiate(bubbled, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.Euler(this.transform.position));
             createdBubbled.GetComponent<Rigidbody>().AddForce(other.transform.InverseTransformDirection(other.gameObject.GetComponent<Rigidbody>().velocity) * 500);
-            createdBubbled.transform.Find("BubbleShot").GetComponent<BubbleShotController>().attachedPlayer = this.gameObject;
+            createdBubbled.transform.Find("VisualBubble").GetComponent<VisualBubbleController>().attachedPlayer = this.gameObject;
             this.transform.SetParent(createdBubbled.transform);
 
             GameObject gotBubbled = Instantiate(gotBubbledEffect, new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z), Quaternion.Euler(this.transform.position));
