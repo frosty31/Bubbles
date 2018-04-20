@@ -1,5 +1,9 @@
 # Bubbles
 
+PC, Mac, ARCore, ARKit cross-platform last man standing Bubble game. The objective is to shoot bubbles at the players on the map with the Camera/Phone. Then, use the joysticks or UP DOWN LEFT RIGHT to avoid the Bubbles. If you get trapped, press UP DOWN LEFT RIGHT a lot to avoid getting trapped.
+
+- [Version 0.0.1 checkpoint](https://www.youtube.com/watch?v=aMwKZ_esLpQ)
+
 ## Scenes
 
 All scenes are saved in the `Scenes` folder in Assets/
@@ -48,7 +52,7 @@ All of our saved objects are stored in the PreFabs folder. PreFabs are just save
 - NetworkedPlayerState. `NetworkedPlayerState` is attached to the `CameraPlayer (Prefab)`. We are using this as a way to send information to all the Clients or Server. UNET requires the GameObject to have Local Authority, which in our case is CameraPlayer, so we put all of our NetworkingStuff in here. For example, the SpritePlayer (Prefabs) are moving? Update the movements with the NetworkedPlayerState (Script)!
 - PlayerController. `PlayerController` is attached to the `CameraPlayer`. It adds the logic for the max number of bubbles we can shoot and using the KeyCode.Space button to shoot new Bubbles.
 - SoundManager. We plan on using SoundManager for sound effects. We haven't got to it yet.
-- SpriteController. `SpriteController` is attached to our `SpritePlayer (Prefab)`. We use this script to control the movement of our SpritePlayer (Prefab) and check if it has hit either the `Bubble(Clone)` or DeathZone. If you hit a Bubble, turn off gravity is get trapped in a bubble. Hit any key a lot of times to free yourself and restore gravity. If you hit a `DeathZone`, just destroy the SpritePlayer (Prefab) with `Destroy(gameObject)`, which represents itself.
+- SpriteController. `SpriteController` is attached to our `SpritePlayer (Prefab)`. We use this script to control the movement (UP DOWN LEFT RIGHT) of our SpritePlayer (Prefab) and check if it has hit either the `Bubble(Clone)` or DeathZone. If you hit a Bubble, turn off gravity is get trapped in a bubble. Hit any key a lot of times to free yourself and restore gravity. If you hit a `DeathZone`, just destroy the SpritePlayer (Prefab) with `Destroy(gameObject)`, which represents itself.
 
 ## Miscellaneous
 
