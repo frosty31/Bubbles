@@ -23,12 +23,20 @@ public class LogicManager : MonoBehaviour {
     // public GameObject AndroidARCoreCamera;
     // public GameObject StandaloneCamera;
 
+    public GameObject ARKitCamera;
+    public GameObject StandaloneCamera;
+    public GameObject Floor;
+
     private void Start()
     {
 #if UNITY_STANDALONE
-        // Instantiate(StandaloneCamera);
+        Instantiate(StandaloneCamera);
+        Instantiate(Floor);
 #else
-        // Instantiate(AndroidARCoreCamera);
+        Instantiate(AndroidARCoreCamera);
+        GameObject arkitManager = Instantiate(Resources("ARKitManager"));
+        Transform hitCubeParent = arkitManager.transform.Find("HitCubeParent");
+        Instantiate(Floor, hitCubeParent);
 #endif
     }
 }
